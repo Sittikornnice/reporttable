@@ -1,0 +1,139 @@
+@page {
+    size: A4 portrait; /* ตั้งค่าเป็น A4 แนวตั้ง */
+    margin: 15mm; /* ตั้ง margin ให้มีระยะขอบเท่ากันทุกด้าน */
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: normal;
+    font-weight: normal;
+    src: url("{{ base_path('public/fonts/THSarabunNew.ttf') }}") format('truetype');
+}
+
+@font-face {
+    font-family: 'THSarabunNew';
+    font-style: bold;
+    font-weight: bold;
+    src: url("{{ base_path('public/fonts/THSarabunNew-Bold.ttf') }}") format('truetype');
+}
+
+body {
+    font-family: 'THSarabunNew', sans-serif !important;
+    font-size: 9pt; /* ขนาดฟอนต์เล็ก */
+    margin: 0;
+    background: none; /* ลบกรอบด้านหลัง */
+}
+
+.page {
+    width: 177mm; /* 210mm (A4) - (15mm * 2) */
+    height: 267mm; /* 297mm (A4) - (15mm * 2) */
+    margin: auto; /* จัดกึ่งกลางแนวนอน */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* จัดให้เนื้อหาอยู่กึ่งกลางแนวตั้ง */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header {
+    font-family: 'THSarabunNew' !important;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+    border: 1px solid black; 
+    padding: 0px;
+    border-bottom: none;
+}
+
+.sub-text {
+    font-size: 10pt;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    padding: 2px;
+}
+
+.filters {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.filters form {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* ทำให้ตารางยืดตามขนาดคอลัมน์ */
+    font-family: 'THSarabunNew' !important;
+    font-size: 8pt; /* ขนาดฟอนต์เล็กลง */
+    background: none; /* ลบกรอบด้านหลัง */
+    margin: auto; /* จัดให้อยู่กลางทั้งแนวตั้งและแนวนอน */
+}
+
+th, td {
+    border: 1px solid black; /* กำหนดกรอบตาราง */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    vertical-align: middle; /* จัดข้อความให้อยู่กลางแนวตั้ง */
+    padding: 3px; /* ลด padding */
+    word-wrap: break-word; /* ตัดคำให้พอดี */
+    font-family: 'THSarabunNew' !important;
+}
+
+th {
+    background-color: #f1f8ff;
+    font-weight: bold;
+    font-size: 10.5px;
+}
+
+/* ปรับขนาดคอลัมน์ให้เหมาะสม */
+td:nth-child(1) { width: 10%; }
+td:nth-child(2) { width: 9%; }
+td:nth-child(3) { width: 9%; }
+td:nth-child(4) { width: 9%; }
+td:nth-child(5) { width: 9%; }
+td:nth-child(6) { width: 9%; }
+td:nth-child(7) { width: 9%; }
+td:nth-child(8) { width: 9%; }
+td:nth-child(9) { width: 9%; }
+td:nth-child(10) { width: 9%; }
+td:nth-child(11) { width: 9%; } /* เพิ่มคอลัมน์ที่หายไป */
+
+/* ปรับตารางในหน้าที่ 2 ขึ้นไปให้ตรงกลาง */
+@media print {
+    body {
+        margin: 0;
+    }
+
+    .page {
+        width: 177mm;
+        height: 267mm;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* จัดตารางให้อยู่กลางแนวตั้ง */
+        align-items: center;
+    }
+
+    .page:nth-child(n+2) { /* ตั้งแต่หน้าที่ 2 เป็นต้นไป */
+        page-break-before: always;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    table {
+        margin: auto; /* จัดให้อยู่กลางแนวตั้งและแนวนอน */
+    }
+}
